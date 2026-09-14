@@ -1,0 +1,15 @@
+center{
+    display: block;
+    margin-top:80px;
+    font-size: 20px;
+    font-weight: 700;
+    color:blue;
+}
+
+.btn{
+    cursor:pointer;
+    border:none;
+    border-radius:8px;
+    color:white;
+    background-color: black;
+}
