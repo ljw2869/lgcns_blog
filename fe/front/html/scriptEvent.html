@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <!-- Latest compiled and minified CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Latest compiled JavaScript -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    </head>
+    <body>
+        <!-- 핸들러의 영역, 익명함수 사용하는 형식 -->
+        <!-- <button 
+            type="button" 
+            class="btn btn-outline-danger"
+            onclick="signInHandler(e)">SignIn</button> -->
+            <button 
+            type="button" 
+            class="btn btn-outline-danger"
+            id="handler">SignIn</button>
+
+            <script>
+                const signInHandler=(e)=>{
+                    window.alert(`signIn button click`);
+                    console.log(`debug >>> event ${event.target}`); //event source
+                    console.log(`debug >>> event ${event.target.value}`);
+                }
+                // document.querySelector("#handler").onclick=()=>{
+                //     window.alert(`signIn button click`);
+                //     console.log(`debug >>> event ${event.target}`); //event source
+                //     console.log(`debug >>> event ${event.target.value}`);
+                // }//요소 노드에 속성 추가
+
+                //case 02 -사실 이게 표준
+                document.querySelector("#handler").addEventListener('click',()=>{ // 이벤트에 이름을 줌
+                    window.alert('handler2 button click');
+                });
+            </script>
+    </body>
+</html>

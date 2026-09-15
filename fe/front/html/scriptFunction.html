@@ -77,7 +77,36 @@
                     }
                 }
             };
+            console.log(`debug >>> 배열 변수와 함께 사용되는 함수와 람다식 `);
+            const ages=[20,24,26,30,34,38];
 
+            const newAges=ages.map(age=>age*2);// 함수 내 함수의 구현부를 람다식으로 많듦
+            console.log(`debug >>> newAges `,newAges);
+
+
+            const evenAges=ages.filter(age=>age%2===0);
+            console.log(`debug >>> evenAges `,evenAges);
+
+            /*
+            Q1)
+            - emial을 키로 하고 nickName 값을 값으로 하는 새로운 객체를 만들려고 한다. 
+            - 즉, 배열을 가공해서 하나의 객체로 합치는 것
+            hint)
+            - array : reduce(acc, cur, idx, ary) 함수 (누적된 값, current index, )
+            - 배열 객체의 grouping을 위해서 많이 사용됨
+            */
+           const usreAry=[
+                {email:"naver.com", nickName:"IronMan"},
+                {email:"google.com", nickName:"Bob"},
+                {email:"daum.com", nickName:"Alice"}
+           ];
+
+           const reduceAry=userAry.reduce((obj,cur)=>{
+                obj[cur.email]=cur.nickName;
+                return obj;
+           },{});// 초기값은 비어있는 객체로 하도록 설정
+           console.log(`debug >>> reduceAry `,reduceAry);
+           
         </script>
     </body>
 </html>
