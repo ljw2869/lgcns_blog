@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+    </head>
+    <body>
+        <div id ="test"></div>
+
+            <script>
+                //document.querySelector("#test").innerHTML="<center>Inspire Camp</center>";// 문자열에 태그가 있음 innerHTML
+                const promise = new Promise((resolve,reject)=>{// 두 개의 callback 할 수 있는 execute 전달받음 
+                    setTimeout(()=>{
+                        //resolve('success');
+                        resolve({status:200,data:{message:'success'}}); // then영역이 호출됨
+                        //reject({status: 404});// catch영역이 호출됨
+                    },1000)
+                    });
+                //1초 뒤에 열면 fulfilled뜨고 1초 전에 열면 pending상태라는 것을 볼 수 있음
+                console.log(`debug>>> promise `,promise);
+                promise.then(response=>{
+                        console.log(`debug>>> response `,response);// 객체 handling하는 영역
+                        })
+                    .catch(error=>{
+                        console.log(`debug>>> error `,error);
+                        }
+                    );//then=resolve했을 때, catch()reject됐을 때 구현되는 영역
+            //chain형태
+            </script>
+    </body>
+</html>
