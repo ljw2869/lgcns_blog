@@ -15,7 +15,7 @@
         <script>
             ary=[];
             const loadData=async()=>{
-                await fetch(`../server/users.json`)
+                await fetch(`https://jsonplaceholder.typicode.com/users`)
                     .then(response=>response.json())
                     .then(data=>{
                         console.log(`debug >>> data: `,data);
@@ -38,12 +38,11 @@
                     container.appendChild(card);
 
                     const name = document.createElement('h3');
-                    name.textContent=obj.name;
+                    name.textContent=obj.username;
                     const major = document.createElement('p');//이러면 태그가 만들어짐-이렇게 해서 특정 값 씌울 수 있음
-                    major.textContent=obj.major;
+                    major.textContent=obj.email;
                     const phone = document.createElement('p');
-                    phone.textContent=obj.phone;
-
+                    phone.textContent=obj?.address.city ?? 'seoul';
 
                     //button
                     const delBtn=document.createElement('button');

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h1>Inspire Coffee</h1>
+        <img src="../img/coffee-blue.jpg"
+            width="200">
+    </div>
+    <div>
+        <!-- <button type="button" onclick="handler('Lgcns Coffee','coffee-pink.jpg')">헤딩과 이미지의 속성을 변경</button> -->
+        <button type="button" id="btn">Inspire Coffee</button>
+    </div>
+
+    <script>
+        /*
+        Q)
+        - step01: 버튼의 이벤트를 감지하는 함수정의
+        - step02: 이벤트 발생시 h1, img 태그에 접근하여
+        - step03: 이미지 src 속성에 접근하여 coffee-pink.jpg변경
+        - step04: h1접근해서 텍스트를 Lgcns Coffee변경
+        - 필요에 따라서 태그에 선택자를 정의할 수 있음.
+        hint) 특정영역에 text삽입시 : textContent, innerHtml, innerText
+
+        - step05: 테스트 완료되면 ai agent 도움 받아서 css작성하고 꾸미기
+        */
+
+        document.querySelector('#btn').onclick=(e)=>{
+            console.log(`debug >>> btn caption`,e.target.textContent)
+            if(e.target.textContent==='Inspire Coffee')
+            {
+                let h1=document.querySelector('body > div > h1');//노드워킹
+                let img=document.querySelector('body > div > img');
+                h1.textContent='LG CNS Coffee';
+                img.src='../img/coffee-pink.jpg';
+                e.target.textContent='LG CNS Coffee';
+            }
+            else{
+                let h1=document.querySelector('body > div > h1');//노드워킹
+                let img=document.querySelector('body > div > img');
+                h1.textContent='Inspire Coffee';
+                img.src='../img/coffee-blue.jpg';
+                e.target.textContent='Inspire Coffee';
+            }
+      };
+    </script>
+</body>
+</html>
