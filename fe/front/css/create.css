@@ -1,0 +1,17 @@
+.container{
+    display: flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.card{
+    border:1px solid yellowgreen;
+    border-radius:10px;
+    width:220px;
+    padding: 15px;
+    transition: transform 200ms;
+}
+.btn{
+    background-color: red;
+    border-radius: 20%;
+}

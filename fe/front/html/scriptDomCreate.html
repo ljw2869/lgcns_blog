@@ -4,29 +4,73 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Document</title>
+        <link href="../css/create.css" rel="stylesheet">
     </head>
     <body>
-        <div id ="test"></div>
+        <h2>사용자 목록</h2>
+        <div class ="container" id="container">
 
-            <script>
-                //document.querySelector("#test").innerHTML="<center>Inspire Camp</center>";// 문자열에 태그가 있음 innerHTML
-                const promise = new Promise((resolve,reject)=>{// 두 개의 callback 할 수 있는 execute 전달받음 
-                    setTimeout(()=>{
-                        //resolve('success');
-                        resolve({status:200,data:{message:'success'}}); // then영역이 호출됨
-                        //reject({status: 404});// catch영역이 호출됨
-                    },1000)
-                    });
-                //1초 뒤에 열면 fulfilled뜨고 1초 전에 열면 pending상태라는 것을 볼 수 있음
-                console.log(`debug>>> promise `,promise);
-                promise.then(response=>{
-                        console.log(`debug>>> response `,response);// 객체 handling하는 영역
-                        })
+        </div>
+
+        <script>
+            ary=[];
+            const loadData=async()=>{
+                await fetch(`../server/users.json`)
+                    .then(response=>response.json())
+                    .then(data=>{
+                        console.log(`debug >>> data: `,data);
+                        ary=data;
+                    })
                     .catch(error=>{
-                        console.log(`debug>>> error `,error);
-                        }
-                    );//then=resolve했을 때, catch()reject됐을 때 구현되는 영역
-            //chain형태
-            </script>
+                        console.log(`debug >>> error ${error}`);
+                });
+                makeCard();
+            }
+            
+            /*
+            서버 통신을 통해서 전달받은 데이터를 배열변수 담았다고 가정
+            */
+           const makeCard=()=>{
+                container.innerHTML=''; // clear시키고 re-rendering 하는 작업
+                ary.forEach((obj, idx)=>{
+                    const card=document.createElement('div');
+                    card.className='card';
+                    container.appendChild(card);
+
+                    const name = document.createElement('h3');
+                    name.textContent=obj.name;
+                    const major = document.createElement('p');//이러면 태그가 만들어짐-이렇게 해서 특정 값 씌울 수 있음
+                    major.textContent=obj.major;
+                    const phone = document.createElement('p');
+                    phone.textContent=obj.phone;
+
+
+                    //button
+                    const delBtn=document.createElement('button');
+                    delBtn.className='btn';
+                    delBtn.textContent="삭제";
+                
+                    delBtn.onclick=(e)=>{
+                        window.alert('button click')
+                        ary.splice(idx,1);
+                        makeCard(); // 버튼 누르면 다시 ary에 맞게 카드를 뿌려 내야 한다.
+                    };
+
+                    card.appendChild(name); 
+                    card.appendChild(major); 
+                    card.appendChild(phone); 
+                    card.appendChild(delBtn);
+
+                    container.appendChild(card); 
+                });
+            };
+
+            const init=async()=>{
+                await loadData();
+                makeCard();
+            }
+            init();
+            
+        </script>
     </body>
 </html>
