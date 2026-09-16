@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <link href="../css/axios.css" rel="stylesheet">
+</head>
+<body>
+    <h2>상품목록</h2>
+    <div class="container" id ="container"></div>
+
+    <script>
+        // img(사이즈 조절), title, price
+        let ary=[];
+        const loadData=async(e)=>{
+            
+            await axios.get('http://fakestoreapi.com/products')
+                .then(response =>{
+                    console.log(response.data);
+                    ary=response.data;
+                })
+                .catch(error=>{
+                        console.log(`debug >>> data: `,data);
+                        ary=data;
+                    } )
+                .finally(()=>{
+                    console.log(`debug >>> request completed`);
+                });
+        }
+        const makeProduct=(e)=>{
+                container.innerHTML=''; 
+                ary.forEach((obj, idx)=>{
+                    const card=document.createElement('div');
+                    card.className='card';
+                    container.appendChild(card);
+
+                    const img = document.createElement('img');
+                    img.src=obj.image;
+                    const title = document.createElement('h3');//이러면 태그가 만들어짐-이렇게 해서 특정 값 씌울 수 있음
+                    title.textContent=obj.title;
+                    const price = document.createElement('p');
+                    price.textContent=obj.price+"$"
+
+                    //button
+                    const delBtn=document.createElement('button');
+                    delBtn.className='btn';
+                    delBtn.textContent="삭제";
+                
+                    delBtn.onclick=(e)=>{
+                        window.alert('button click')
+                        ary.splice(idx,1);
+                        makeProduct(); // 버튼 누르면 다시 ary에 맞게 카드를 뿌려 내야 한다.
+                    };
+
+                    card.appendChild(img); 
+                    card.appendChild(title); 
+                    card.appendChild(price); 
+                    card.appendChild(delBtn);
+
+                    container.appendChild(card);
+                }
+            );
+            
+        }
+        const init=async(e)=>{
+            await loadData();
+            makeProduct();
+        }
+        init();
+    </script>
+</body>
+</html>
