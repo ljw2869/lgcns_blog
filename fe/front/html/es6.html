@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Spread Operator
+        // 객체 또는 배열 값을 다른 객체, 배열로 복제하거나 옮길 때 사용
+        let objOriginal={
+            a:10,
+            b:20
+        };
+        let objNew=objOriginal;//주소를 할당
+        console.log(`debug === `,objNew===objOriginal);
+        //true로 나옴
+        objNew.a=20;
+        console.log(`debug === `,objNew.a);
+        console.log(`debug === `,objOriginal.a);
+        //둘다 같이 20으로 바뀌어져 있는 것을 확인할 수 있음
+        
+        console.log(`spread operator`);
+        objNew={...objOriginal};//복제
+
+        objNew.a=10;
+        console.log(`debug === `,objNew.a);
+        console.log(`debug === `,objOriginal.a);
+
+        //구조분해(destructuring) 
+        //props.a, props.b로 접근해야 하는데 아래와 같이 작성할 수 있다.
+        let {a,b}=objOriginal;
+        console.log(`debug === `,a,b);
+
+        let ary=[1,2,3];
+        let newAry={...ary};
+        //newAry에 수정해도 ary에는 영향을 미치지 않음
+
+        //Optional Chaining(2020)
+        //객체 속성값의 유효성을 체크
+        //? .
+        const user={
+            name:{
+                first:"lim",
+                last: 'js'
+            },
+            address:{
+                city:'seoul',
+                postcode:'123456'
+            }
+        }
+        // const postcode=user.address&&user.address.postcode;//논리곱
+        const postcode=user.address?.postcode;//Optional Chaining
+        //삼항연산자 느낌
+        //앞의 연산이 undefined이나 null이면 원래는 error가 나오는데, 
+        // 코드상 그냥 undefined로 처리해준다.
+        //중첩되는 하위속성을 간단하게 쓸 수 있음 있다면 갖고 와라
+
+
+        //널 병합 연산자(??)
+        const city=user.address?.city??'busan';
+        
+
+        //Enhanced Object Literal - 축약문법
+        let lang='react.js'
+        let subject={
+            //lang:lang
+            lang,
+            // coding:function(){
+
+            // }
+            coding(){
+                console.log('coding');
+            }
+        }//키와 변수의 이름이 동일할 경우
+    </script>
+</body>
+</html>
