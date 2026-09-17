@@ -35,7 +35,8 @@
 
         let ary=[1,2,3];
         let newAry={...ary};
-        //newAry에 수정해도 ary에는 영향을 미치지 않음
+        // newAry에 수정해도 ary에는 영향을 미치지 않음
+        // newAry를 통해서 original과 비교할 수 있게 됨
 
         //Optional Chaining(2020)
         //객체 속성값의 유효성을 체크
@@ -51,11 +52,11 @@
             }
         }
         // const postcode=user.address&&user.address.postcode;//논리곱
-        const postcode=user.address?.postcode;//Optional Chaining
-        //삼항연산자 느낌
-        //앞의 연산이 undefined이나 null이면 원래는 error가 나오는데, 
-        // 코드상 그냥 undefined로 처리해준다.
-        //중첩되는 하위속성을 간단하게 쓸 수 있음 있다면 갖고 와라
+        const postcode=user.address?.postcode;//Optional Chaining 위와 같은 코드가 됨.
+        // 삼항연산자 느낌
+        // 앞의 연산이 undefined이나 null이면 원래는 error가 나오는데, 
+        // 코드상 그냥 undefined로 반환해준다.
+        // 중첩되는 하위속성을 간단하게 쓸 수 있음 있다면 갖고 와라
 
 
         //널 병합 연산자(??)
